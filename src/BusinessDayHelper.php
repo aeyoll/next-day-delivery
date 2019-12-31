@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aeyoll;
 
 use Cmixin\BusinessDay;
@@ -15,7 +17,8 @@ class BusinessDayHelper
         $this->timeLimit = $timeLimit;
     }
 
-    public function getNextBusinessDay(\DateTime $currentDate = null) {
+    public function getNextBusinessDay(\DateTime $currentDate = null)
+    {
         if (is_null($currentDate)) {
             $currentDate = new \DateTime();
         }
