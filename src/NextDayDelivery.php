@@ -7,6 +7,13 @@ namespace Aeyoll;
 use Cmixin\BusinessDay;
 use Carbon\Carbon;
 
+const NEXT_DAY_DELIVERY_DEFAULT_OPTIONS = [
+    'timeLimit' => 15,
+    'countryCode' => 'fr',
+    'additionalHolidays' => [],
+    'allowSaturdayDelivery' => false
+];
+
 class NextDayDelivery
 {
     /** @var int The maximum hour of the day before the business can deliver for tomorrow */
@@ -18,14 +25,22 @@ class NextDayDelivery
     /** @var array Optionnal holidays */
     private $additionalHolidays = [];
 
-    public function __construct(int $timeLimit, string $countryCode, array $additionalHolidays = [])
+    /**
+     * @param array $args
+     */
+    public function __construct(array $args = [])
     {
-        $this->timeLimit = $timeLimit;
-        $this->countryCode = $countryCode;
-        $this->additionalHolidays = $additionalHolidays;
+        $options = array_merge(NEXT_DAY_DELIVERY_DEFAULT_OPTIONS, $args);
 
-        // Allow delivery on saturdays
-        Carbon::setWeekendDays([Carbon::SUNDAY]);
+        $this->timeLimit = $options['timeLimit'];
+        $this->countryCode = $options['countryCode'];
+        $this->additionalHolidays = $options['additionalHolidays'];
+
+        Carbon::setWeekendDays([Carbon::SATURDAY, Carbon::SUNDAY]);
+
+        if ($options['allowSaturdayDelivery'] === true) {
+            Carbon::setWeekendDays([Carbon::SUNDAY]);
+        }
 
         BusinessDay::enable('Carbon\Carbon', $this->countryCode, $this->additionalHolidays);
     }
