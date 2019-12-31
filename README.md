@@ -19,7 +19,7 @@ $ndd = new NextDayDelivery();
 $isNextDayDeliveryPossible = $ndd->isNextDayDeliveryPossible();
 ```
 
-If the next day delivery is possible, it returns the amount of time before it is actualy possible to ship. Otherwise, it returns `false`.
+If the next day delivery is possible, it returns the amount of time before it is actually possible to ship. Otherwise, it returns `false`.
 
 Options
 ---
@@ -32,3 +32,14 @@ Alternatively, you can pass an array of options to the constructor:
 | *countryCode* | A 2 letter code picked from [cmixin/business-day](https://packagist.org/packages/cmixin/business-day), used to compute the country holidays | `'fr'` |
 | *additionalHolidays* | an array of days where the company is not able to ship | `[]` |
 | *allowSaturdayDelivery* | self-explanatory boolean | `false` |
+
+
+Testing
+---
+
+You can run test by cloning the repository and executing PHPUnit:
+
+```sh
+composer install
+./vendor/bin/phpunit
+```
