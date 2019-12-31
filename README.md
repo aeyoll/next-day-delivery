@@ -26,7 +26,9 @@ Options
 
 Alternatively, you can pass an array of options to the constructor:
 
-- 'timeLimit': Max hour in 24h format before being unable to ship (default: `15`, eg 3pm) 
-- 'countryCode': A 2 letter code picked from (https://packagist.org/packages/cmixin/business-day)[https://packagist.org/packages/cmixin/business-day], used to compute the country holidays (default: `'fr'`)
-- 'additionalHolidays': an array of days where the company is not able to ship (default: `[]`),
-- 'allowSaturdayDelivery': self-explanatory boolean (default: `false`)
+| option name | description | default value |
+|-------------|-------|----------|
+| *timeLimit* | Max hour in 24h format before being unable to ship | `15`, e.g. 3pm |
+| *countryCode* | A 2 letter code picked from (https://packagist.org/packages/cmixin/business-day)[https://packagist.org/packages/cmixin/business-day], used to compute the country holidays | `'fr'` |
+| *additionalHolidays* | an array of days where the company is not able to ship | `[]` |
+| *allowSaturdayDelivery* | self-explanatory boolean | `false` |
