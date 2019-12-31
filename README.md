@@ -1,5 +1,7 @@
 # Next Day Delivery
 
+[![Build Status](https://travis-ci.com/aeyoll/next-day-delivery.svg?branch=master)](https://travis-ci.com/aeyoll/next-day-delivery)
+
 This repository is a small utility to help knowing if a company is able to ship something for the next day.
 
 Requirements
