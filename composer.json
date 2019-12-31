@@ -1,4 +1,6 @@
 {
+    "name": "aeyoll/next-day-delivery",
+    "description": "a small utility to help knowing if a company is able to ship something for the next day",
     "autoload": {
         "classmap": [
             "src/"
@@ -9,6 +11,7 @@
             "php": "7.0.33"
         }
     },
+    "license": "MIT",
     "require": {
         "cmixin/business-day": "^1.7"
     },
