@@ -7,7 +7,7 @@ namespace Aeyoll;
 use Cmixin\BusinessDay;
 use Carbon\Carbon;
 
-class BusinessDayHelper
+class NextDayDelivery
 {
     /** @var int The maximum hour of the day before the business can deliver for tomorrow */
     private $timeLimit;

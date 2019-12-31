@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Aeyoll\BusinessDayHelper;
+use Aeyoll\NextDayDelivery;
 
-final class BusinessDayHelperTest extends TestCase
+final class NextDayDeliveryTest extends TestCase
 {
     public function testClassicWeekDayBeforeTimeLimit(): void
     {
-        $helper = new BusinessDayHelper(15);
+        $helper = new NextDayDelivery(15);
         $isNextDayDeliveryPossible = $helper->isNextDayDeliveryPossible(new \DateTime('2019-12-30 08:00:00'));
 
         $this->assertEquals($isNextDayDeliveryPossible, '07h00');
@@ -17,7 +17,7 @@ final class BusinessDayHelperTest extends TestCase
 
     public function testClassicWeekDayAfterTimeLimit(): void
     {
-        $helper = new BusinessDayHelper(15);
+        $helper = new NextDayDelivery(15);
         $isNextDayDeliveryPossible = $helper->isNextDayDeliveryPossible(new \DateTime('2019-12-30 16:00:00'));
         
         $this->assertEquals($isNextDayDeliveryPossible, false);
@@ -25,7 +25,7 @@ final class BusinessDayHelperTest extends TestCase
 
     public function testWeekendDay(): void
     {
-        $helper = new BusinessDayHelper(15);
+        $helper = new NextDayDelivery(15);
         $isNextDayDeliveryPossible = $helper->isNextDayDeliveryPossible(new \DateTime('2019-12-14 16:00:00')); // Saturday
         $this->assertEquals($isNextDayDeliveryPossible, false);
 
@@ -35,7 +35,7 @@ final class BusinessDayHelperTest extends TestCase
 
     public function testNextBusinessDayIsAHoliday(): void
     {
-        $helper = new BusinessDayHelper(15);
+        $helper = new NextDayDelivery(15);
         $isNextDayDeliveryPossible = $helper->isNextDayDeliveryPossible(new \DateTime('2019-12-31 08:00:00')); // Tomorrow is a holiday
 
         $this->assertEquals($isNextDayDeliveryPossible, false);
@@ -43,7 +43,7 @@ final class BusinessDayHelperTest extends TestCase
 
     public function testCurrentDayIsAHoliday(): void
     {
-        $helper = new BusinessDayHelper(15);
+        $helper = new NextDayDelivery(15);
         $isNextDayDeliveryPossible = $helper->isNextDayDeliveryPossible(new \DateTime('2019-11-01 08:00:00')); // Tomorrow is a holiday
         
         $this->assertEquals($isNextDayDeliveryPossible, false);
