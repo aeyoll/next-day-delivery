@@ -51,7 +51,7 @@ class NextDayDelivery
             $currentDate = new \DateTime();
         }
 
-        return Carbon::parse($currentDate)->nextBusinessDay();
+        return Carbon::parse($currentDate->format('Y-m-d H:m:s'))->nextBusinessDay();
     }
 
     public function isNextDayDeliveryPossible(\DateTime $currentDate = null)
@@ -67,7 +67,7 @@ class NextDayDelivery
 
         $nextBusinessDay = $this->getNextBusinessDay($currentDate);
 
-        if ((int) $nextBusinessDay->diff($tomorrow, true)->format('%d') === 0 && $hour < $this->timeLimit && Carbon::parse($currentDate)->isBusinessDay()) {
+        if ((int) $nextBusinessDay->diff($tomorrow, true)->format('%d') === 0 && $hour < $this->timeLimit && Carbon::parse($currentDate->format('Y-m-d H:m:s'))->isBusinessDay()) {
             $maxDelivery = clone $currentDate;
             $maxDelivery->setTime($this->timeLimit, 0);
 
