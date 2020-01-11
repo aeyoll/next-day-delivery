@@ -67,7 +67,7 @@ class NextDayDelivery
 
         $nextBusinessDay = $this->getNextBusinessDay($currentDate);
 
-        if ((int) $nextBusinessDay->diff($tomorrow, true)->format('%d') === 0 && $hour < $this->timeLimit && Carbon::parse($currentDate->format('Y-m-d H:m:s'))->isBusinessDay()) {
+        if ($nextBusinessDay->format('Y-m-d') === $tomorrow->format('Y-m-d') && $hour < $this->timeLimit && Carbon::parse($currentDate->format('Y-m-d H:m:s'))->isBusinessDay()) {
             $maxDelivery = clone $currentDate;
             $maxDelivery->setTime($this->timeLimit, 0);
 
